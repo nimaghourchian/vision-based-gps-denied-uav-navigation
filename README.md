@@ -1,4 +1,4 @@
-# Rapid Assessment Emergency Response: Vision-Based Navigation in GPS-Denied Environments for UAVs
+# Vision-based GPS-denied navigation for UAVs
 
 Bachelor's final project in Mechanical Engineering. This repository contains a cleaned public snapshot of the code used while developing a vision-based navigation framework for UAV operation when GPS measurements are unavailable or unreliable.
 
