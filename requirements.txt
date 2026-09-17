@@ -11,3 +11,8 @@ Flask
 pandas
 openpyxl
 matplotlib
+faiss-cpu
+torch
+torchvision
+rasterio
+folium
