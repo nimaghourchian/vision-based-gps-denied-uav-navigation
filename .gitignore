@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+.env
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Generated data and logs
+*.log
+outputs/*.csv
+outputs/*.xlsx
+data/frames/
+data/*.xlsx
+
+# Local runtime artifacts
+*.tmp
