@@ -16,8 +16,16 @@ Thumbs.db
 *.log
 outputs/*.csv
 outputs/*.xlsx
+outputs/*.html
 data/frames/
+data/avl_rvl_frames/
 data/*.xlsx
+
+# Local AVL assets / large external files
+faiss_cache/
+tiles_out/
+weights/
+*.ckpt
 
 # Local runtime artifacts
 *.tmp
