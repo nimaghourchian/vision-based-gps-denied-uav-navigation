@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live UAV Map</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        body { margin: 0; padding: 0; display: flex; }
+        #map { height: 100vh; width: 80%; }
+        #info {
+            width: 20%;
+            padding: 10px;
+            background: rgba(255,255,255,0.9);
+            font-family: sans-serif;
+            font-size: 14px;
+            position: relative;
+        }
+        #info h3 { margin-top: 0; text-align: center; }
+        #info div { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <div id="info">
+        <h3>UAV Info</h3>
+        <div id="gps-info">GPS: --</div>
+        <div id="state-info">State: --</div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        const map = L.map('map').setView([52.0, 5.0], 15);
+
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles © Esri'
+        }).addTo(map);
+
+        const gpsMarker = L.circleMarker([0, 0], {color: 'red', radius: 6}).addTo(map);
+        const stateMarker = L.circleMarker([0, 0], {color: 'blue', radius: 6}).addTo(map);
+        const gpsPath = L.polyline([], {color: 'red', weight: 3, opacity: 0.8, smoothFactor: 2}).addTo(map);
+        const statePath = L.polyline([], {color: 'blue', weight: 3, opacity: 0.8, smoothFactor: 2}).addTo(map);
+
+        const gpsInfoDiv = document.getElementById('gps-info');
+        const stateInfoDiv = document.getElementById('state-info');
+
+        async function updateMarkers() {
+            try {
+                const response = await fetch('/position');
+                const data = await response.json();
+
+                if (data.gps.lat !== null && data.gps.lon !== null) {
+                    const gpsLatLng = [data.gps.lat, data.gps.lon];
+                    gpsMarker.setLatLng(gpsLatLng);
+                    gpsPath.addLatLng(gpsLatLng);
+                    gpsInfoDiv.innerHTML = `GPS:<br>Lat: ${data.gps.lat.toFixed(6)}<br>Lon: ${data.gps.lon.toFixed(6)}`;
+                }
+
+                if (data.state.lat !== null && data.state.lon !== null) {
+                    const stateLatLng = [data.state.lat, data.state.lon];
+                    stateMarker.setLatLng(stateLatLng);
+                    statePath.addLatLng(stateLatLng);
+                    map.panTo(stateLatLng, {animate: true, duration: 0.3});
+                    stateInfoDiv.innerHTML = `State:<br>Lat: ${data.state.lat.toFixed(6)}<br>Lon: ${data.state.lon.toFixed(6)}`;
+                }
+            } catch (error) {
+                console.error('Failed to fetch position:', error);
+            }
+        }
+
+        setInterval(updateMarkers, 50);
+    </script>
+</body>
+</html>
