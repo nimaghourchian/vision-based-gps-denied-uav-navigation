@@ -1,0 +1,13 @@
+numpy
+scipy
+PyYAML
+pyserial
+pymavlink
+pymap3d
+opencv-python
+imageio
+Pillow
+Flask
+pandas
+openpyxl
+matplotlib
