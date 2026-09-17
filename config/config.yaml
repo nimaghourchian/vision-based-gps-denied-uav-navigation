@@ -1,0 +1,29 @@
+transform:
+  dt: 0.2
+  max_queue_size: 20
+
+kalman:
+  dt: 0.05
+  accel_noise_std: 0.2
+  pos_noise_std: 0.5
+
+initial_state:
+  enable: true
+  x0: [[0], [0], [0], [0], [0], [0]]
+  P0:
+    - [1, 0, 0, 0, 0, 0]
+    - [0, 1, 0, 0, 0, 0]
+    - [0, 0, 1, 0, 0, 0]
+    - [0, 0, 0, 1, 0, 0]
+    - [0, 0, 0, 0, 1, 0]
+    - [0, 0, 0, 0, 0, 1]
+
+test_data:
+  simulate_vo: true
+  vo_velocity: 0.01
+
+visual_odometry:
+  frames_dir: data/frames
+
+mavlink:
+  connection: udp:127.0.0.1:14550
