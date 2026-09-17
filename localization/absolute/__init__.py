@@ -1,0 +1,1 @@
+"""Absolute satellite-map localization."""
