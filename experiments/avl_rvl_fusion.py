@@ -1,9 +1,4 @@
-"""Development experiment combining SIFT relative localization with periodic AVL fixes.
 
-This script is retained to document the asynchronous AVL/RVL correction experiment.
-It is separate from the Kalman-filter implementation in ``core/``. Configure the
-dataset, FAISS caches, map tiles, LiteSAM config, and weights before running.
-"""
 
 import time
 import math
