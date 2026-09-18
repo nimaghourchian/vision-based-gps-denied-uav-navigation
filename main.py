@@ -177,10 +177,6 @@ def main():
     time.sleep(2)
     map_process.start()
 
-    # The two visual-odometry implementations are kept as separate development
-    # components under preprocessing/. They can be connected to the shared
-    # vision buffers when reproducing those experiments.
-
 
 if __name__ == "__main__":
     try:
