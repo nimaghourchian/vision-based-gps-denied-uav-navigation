@@ -1,9 +1,3 @@
-"""Earlier monolithic prototype of the two-stage AVL pipeline.
-
-Kept for development history. The modular implementation used for reuse is
-``localization/absolute/avl_localizer.py``. External LiteSAM assets and cached
-map descriptors are required to execute this script.
-"""
 
 import faiss
 import numpy as np
