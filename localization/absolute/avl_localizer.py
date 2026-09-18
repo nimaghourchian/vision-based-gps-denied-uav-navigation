@@ -1,12 +1,3 @@
-"""Absolute visual localization against a georeferenced satellite basemap.
-
-Pipeline: ResNet-50 + GeM retrieval -> hierarchical FAISS candidate search ->
-LiteSAM/LoFTR fine matching -> RANSAC homography -> WGS84 position.
-
-The LiteSAM/LoFTR source tree, configuration files, model checkpoint, FAISS
-indices, and map tiles are external research assets and are not redistributed
-in this repository. Their locations are supplied through :class:`AVLConfig`.
-"""
 
 from dataclasses import dataclass
 from pathlib import Path
